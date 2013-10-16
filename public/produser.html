@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Produser</title>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script type="text/javascript" src="/js/faye-browser.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                var client = new Faye.Client('http://localhost:8000/ws');
+
+                $("#button").click(function() {
+                    var data = $("#input").val();
+                    client.publish('/produser', {text: data});
+                })
+            });
+        </script>
+    </head>
+    <body>
+        <input id="input" type="text"><input type="button" id="button" value="OK">
+    </body>
+</html>

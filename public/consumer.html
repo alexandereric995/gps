@@ -1,0 +1,19 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Consumer</title>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script type="text/javascript" src="/js/faye-browser.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                var client = new Faye.Client('http://localhost:8000/ws');
+                client.subscribe('/produser', function(message) {
+                    $('h1').html(message.text);
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <h1></h1>
+    </body>
+</html>
