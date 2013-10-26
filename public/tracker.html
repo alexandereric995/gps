@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Device Tracker</title>
+        <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script type="text/javascript" src="/js/faye-browser.js"></script>
+
+        <script type="text/javascript">
+        $(document).ready(function () {
+            //var faye = new Faye.Client('http://gps.code.my.id/ws');
+
+            var watcher = navigator.geolocation.watchPosition(function(position) {
+                $('#raw').html(JSON.stringify(position));
+                
+            }, function(err) {
+                $('h1').html('Failed');
+                $('.field').hide();
+            }, {
+                enableHighAccuracy: true,
+                maximumAge: 2000,
+                timeout: 10000
+            });
+        });
+        </script>
+    </head>
+    <body>
+        <h1>Position</h1>
+        <div class="field">
+            <pre id="raw"></pre>
+        <!--
+            <p>Latitude: <span id="latitude"></span></p>
+            <p>Longitude: <span id="longitude"></span></p>
+            <p>Heading: <span id="heading"></span></p>
+            <p>Accuracy: <span id="accuracy"></span></p>
+            <p>Time: <span id="time"></span></p>
+        -->
+        </div>
+    </body>
+</html>
