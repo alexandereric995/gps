@@ -3,6 +3,10 @@
     "description": "Realtime GPS Tracking Demo",
     "version": "0.0.1",
     "private": "true",
+    "engines": {
+        "node": "*",
+        "npm": "*"
+    },
     "dependencies": {
         "express": "3.x",
         "faye": "*"
