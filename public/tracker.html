@@ -8,11 +8,11 @@
 
         <script type="text/javascript">
         $(document).ready(function () {
-            //var faye = new Faye.Client('http://gps.code.my.id/ws');
+            var faye = new Faye.Client('http://gps.code.my.id/ws');
 
             var watcher = navigator.geolocation.watchPosition(function(position) {
                 $('#raw').html(JSON.stringify(position));
-                
+                faye.publish('/gps', position);
             }, function(err) {
                 $('h1').html('Failed');
                 $('.field').hide();

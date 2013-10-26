@@ -19,8 +19,14 @@
                 var map = L.map('map-canvas').setView([-6.204043, 106.845474], 13);
                 var google_layer = new L.Google('ROADMAP');
                 map.addLayer(google_layer);
+                var mark = L.marker([-6.204043, 106.845474]).addTo(map);
 
-                var faye = new Faye.Client('http://gps.code.my.id/ws');
+                var fc = new Faye.Client('http://gps.code.my.id/ws');
+                fc.subscribe('/gps', function(position) {
+                    var pos = [position.coords.latitude, position.coords.longitude]
+                    mark.setLatLng(pos);
+                    map.panTo(pos, {animate: true});
+                });
             });
         </script>
     </head>
